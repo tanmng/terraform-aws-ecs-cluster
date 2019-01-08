@@ -92,7 +92,7 @@ variable keypair {
 variable instance_type {
   description = "The instance type to deploy for ecs_cluster instances."
   type        = "string"
-  default     = "t2.nano"
+  default     = "t3.nano"
 }
 
 #--------------------------------------------------------------

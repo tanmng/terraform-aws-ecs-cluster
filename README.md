@@ -76,7 +76,7 @@ please see the [example repo](https://github.com/tanmng/aws-terraform-complete-e
 | ecs_log_agent_retention | Number of days which we wish to keep the logs of ECS agent in cloudwatch | string | `3` | no |
 | ecs_log_audit_retention | Number of days which we wish to keep the logs of ECS audit in cloudwatch | string | `3` | no |
 | ecs_log_init_retention | Number of days which we wish to keep the logs of ECS init in cloudwatch | string | `3` | no |
-| instance_type | The instance type to deploy for ecs_cluster instances. | string | `t2.nano` | no |
+| instance_type | The instance type to deploy for ecs_cluster instances. | string | `t3.nano` | no |
 | keypair | The name of the Aws keypair to use when launching instances. | string | - | yes |
 | name_tag | A tag to append to the name of cluster | string | - | yes |
 | root_volume_type | The root volume type for the ecs_cluster host. | string | `gp2` | no |
