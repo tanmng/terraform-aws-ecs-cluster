@@ -11,14 +11,14 @@ output instance_sg {
   value       = "${aws_security_group.sg.id}"
 }
 
-output private_lb_sg {
+output internal_lb_sg {
   description = "Id of the security group that we created for internal LB. instance can access these SG freely and vice-versa"
-  value       = "${aws_security_group.private_lb_sg.id}"
+  value       = "${aws_security_group.internal_lb_sg.id}"
 }
 
-output public_lb_sg {
-  description = "ID of the security group we created for public LB, LB with this SG can forward traffic onto our ECS instances"
-  value       = "${aws_security_group.public_lb_sg.id}"
+output external_lb_sg {
+  description = "ID of the security group we created for external LB, LB with this SG can forward traffic onto our ECS instances"
+  value       = "${aws_security_group.external_lb_sg.id}"
 }
 
 output nfs_sg {

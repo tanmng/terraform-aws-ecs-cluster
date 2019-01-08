@@ -1,12 +1,7 @@
 #--------------------------------------------------------------
 # Global Variables
 #--------------------------------------------------------------
-variable global_region {
-  description = "The AWS region in which to deploy the ecs_cluster infrastructure."
-  type        = "string"
-}
-
-variable global_vpc_id {
+variable vpc_id {
   description = "The VPC ID in which to deploy the ecs_cluster infrastructure."
   type        = "string"
 }
@@ -131,9 +126,9 @@ variable ecs_log_agent_retention {
   default     = 3
 }
 
-#--------------------------------------------------------------
-# SG for EB instances / Elasticache / NFS / ElasticSearch created outside of this module
-#--------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------------
+# SG for EB instances / Elasticache / NFS / ElasticSearch / Redshift created outside of this module
+#----------------------------------------------------------------------------------------------------------------------------
 variable create_sg_for_nfs {
   description = "Specify whether we should create a SG for NFS, this group can be assigned to any NFS boxes/EFS clusters so that our instances from cluster can access it"
   default     = false

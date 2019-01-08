@@ -3,7 +3,7 @@ locals {
   number_format = "%02d"
 
   # Allow user to overwrite the AMI
-  instance_ami = "${length(var.asg_ami) > 0? var.asg_ami : data.aws_ami.ecs_optimized.id}"
+  instance_ami = "${length(var.asg_ami) > 0 ? var.asg_ami : data.aws_ami.ecs_optimized.id}"
 
   # List of TCP ports that we use to access our databases from EC2 instances
   rds_tcp_ports = [
@@ -30,13 +30,19 @@ locals {
     9300, # Native protocol
   ]
 
-  # List of ports on which we would like to allow our instance egress
-  egress_tcp_ports = [
-    25, # SMTP
-    21, # FTP
-  ]
-
   redshift_tcp_ports = [
     5439, # Redshift default port
   ]
+
+  # Name prefix for elements
+  asg_name_prefix_raw              = "ecs_cluster-asg-${local.cluster_name}"
+  lc_name_prefix_raw               = "ecs_cluster-lc-${local.cluster_name}"
+  asg_sg_name_prefix_raw           = "ecs_cluster-sg-${local.cluster_name}"
+  external_lb_sg_name_prefix_raw   = "ecs_cluster-external_lb-${local.cluster_name}"
+  internal_lb_sg_name_prefix_raw   = "ecs_cluster-internal_lb-${local.cluster_name}"
+  rds_sg_name_prefix_raw           = "ecs_cluster-rds-${local.cluster_name}"
+  elasticache_sg_name_prefix_raw   = "ecs_cluster-elasticache-${local.cluster_name}"
+  nfs_sg_name_prefix_raw           = "ecs_cluster-nfs-${local.cluster_name}"
+  elasticsearch_sg_name_prefix_raw = "ecs_cluster-elasticsearch-${local.cluster_name}"
+  redshift_sg_name_prefix_raw      = "ecs_cluster-redshift-${local.cluster_name}"
 }

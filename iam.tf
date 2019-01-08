@@ -46,7 +46,7 @@ EOF
 # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html
 resource aws_iam_role_policy ec2_cloudwatch_policy {
   name_prefix = "CloudWatch-log-${local.cluster_name}"
-  role        = "${aws_iam_role.ec2_role.id}"
+  role = "${aws_iam_role.ec2_role.id}"
 
   policy = <<EOF
 {
@@ -84,10 +84,10 @@ resource aws_iam_role_policy weird_access {
         "logs:CreateLogGroup"
       ],
       "Resource": ${jsonencode(formatlist("%s:*", list(
-        aws_cloudwatch_log_group.ecs_init_log.arn,
-        aws_cloudwatch_log_group.ecs_audit_log.arn,
-        aws_cloudwatch_log_group.ecs_agent_log.arn,
-      )))}
+    aws_cloudwatch_log_group.ecs_init_log.arn,
+    aws_cloudwatch_log_group.ecs_audit_log.arn,
+    aws_cloudwatch_log_group.ecs_agent_log.arn,
+  )))}
     }
   ]
 }
