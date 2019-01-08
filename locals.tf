@@ -35,14 +35,16 @@ locals {
   ]
 
   # Name prefix for elements
-  asg_name_prefix_raw              = "ecs_cluster-asg-${local.cluster_name}"
-  lc_name_prefix_raw               = "ecs_cluster-lc-${local.cluster_name}"
-  asg_sg_name_prefix_raw           = "ecs_cluster-sg-${local.cluster_name}"
-  external_lb_sg_name_prefix_raw   = "ecs_cluster-external_lb-${local.cluster_name}"
-  internal_lb_sg_name_prefix_raw   = "ecs_cluster-internal_lb-${local.cluster_name}"
-  rds_sg_name_prefix_raw           = "ecs_cluster-rds-${local.cluster_name}"
-  elasticache_sg_name_prefix_raw   = "ecs_cluster-elasticache-${local.cluster_name}"
-  nfs_sg_name_prefix_raw           = "ecs_cluster-nfs-${local.cluster_name}"
-  elasticsearch_sg_name_prefix_raw = "ecs_cluster-elasticsearch-${local.cluster_name}"
-  redshift_sg_name_prefix_raw      = "ecs_cluster-redshift-${local.cluster_name}"
+  asg_name_prefix_raw                  = "ecs_cluster-asg-${local.cluster_name}"
+  lc_name_prefix_raw                   = "ecs_cluster-lc-${local.cluster_name}"
+  asg_sg_name_prefix_raw               = "ecs_cluster-sg-${local.cluster_name}"
+  external_lb_sg_name_prefix_raw       = "ecs_cluster-external_lb-${local.cluster_name}"
+  internal_lb_sg_name_prefix_raw       = "ecs_cluster-internal_lb-${local.cluster_name}"
+  rds_sg_name_prefix_raw               = "ecs_cluster-rds-${local.cluster_name}"
+  elasticache_sg_name_prefix_raw       = "ecs_cluster-elasticache-${local.cluster_name}"
+  nfs_sg_name_prefix_raw               = "ecs_cluster-nfs-${local.cluster_name}"
+  elasticsearch_sg_name_prefix_raw     = "ecs_cluster-elasticsearch-${local.cluster_name}"
+  redshift_sg_name_prefix_raw          = "ecs_cluster-redshift-${local.cluster_name}"
+  iam_instance_profile_name_prefix_raw = "ecs_cluster-${local.cluster_name}"
+  iam_role_name_prefix_raw             = "ecs_cluster-${local.cluster_name}"
 }

@@ -2,12 +2,13 @@
 # IAM Role and Policy for Instance in Our Cluster
 #--------------------------------------------------------------
 resource aws_iam_instance_profile ec2_profile {
-  name_prefix = "ecs_cluster-${local.cluster_name}"
+  name_prefix = "${substr(local.iam_instance_profile_name_prefix_raw, 0, min(64, length(local.iam_instance_profile_name_prefix_raw)))}"
   role        = "${aws_iam_role.ec2_role.name}"
 }
 
 resource aws_iam_role ec2_role {
-  name_prefix = "ecs_cluster-${local.cluster_name}"
+  name_prefix = ""
+  name_prefix = "${substr(local.iam_role_name_prefix_raw, 0, min(64, length(local.iam_role_name_prefix_raw)))}"
   description = "IAM role for EC2 instances from ECS cluster ${local.cluster_name}"
 
   assume_role_policy = "${data.aws_iam_policy_document.instance_assume_role_policy.json}"
