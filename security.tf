@@ -9,7 +9,7 @@ resource aws_security_group external_lb_sg {
   tags = "${merge(
     var.tags,
     map(
-      "Name", "ecs_cluster-external_lb-${local.cluster_name}",
+      "Name", "${local.external_lb_sg_name_prefix_raw}",
       "Description", "Authorize connections from external (interet-facing) load balancer to instances of the cluster ${local.cluster_name}",
     )
   )}"
@@ -36,7 +36,7 @@ resource aws_security_group internal_lb_sg {
   tags = "${merge(
     var.tags,
     map(
-      "Name", "ecs_cluster-internal_lb-${local.cluster_name}",
+      "Name", "${local.internal_lb_sg_name_prefix_raw}",
       "Description", "Authorize connections from internal load balancer to instances of the cluster ${local.cluster_name}",
     )
   )}"
@@ -73,7 +73,7 @@ resource aws_security_group sg {
   tags = "${merge(
     var.tags,
     map(
-      "Name", "ecs_cluster-sg-${local.cluster_name}",
+      "Name", "${local.asg_sg_name_prefix_raw}",
       "Description", "Authorize access to and from the EC2 instances running within our cluster ${local.cluster_name}",
     )
   )}"
@@ -162,7 +162,7 @@ resource aws_security_group cluster_rds_sg {
   tags = "${merge(
     var.tags,
     map(
-      "Name", "ecs_cluster-rds-${local.cluster_name}",
+      "Name", "${local.rds_sg_name_prefix_raw}",
       "Description", "SG to assigned to RDS instances/cluster so that instances from ${local.cluster_name} can access it",
     )
   )}"
@@ -200,7 +200,7 @@ resource aws_security_group cluster_elasticache_sg {
   tags = "${merge(
     var.tags,
     map(
-      "Name", "ecs_cluster-elasticache-${local.cluster_name}",
+      "Name", "${local.elasticache_sg_name_prefix_raw}",
       "Description", "SG to assigned to elasticache instances/cluster so that instances from ${local.cluster_name} can access it",
     )
   )}"
@@ -238,7 +238,7 @@ resource aws_security_group cluster_nfs_sg {
   tags = "${merge(
     var.tags,
     map(
-      "Name", "ecs_cluster-nfs-${local.cluster_name}",
+      "Name", "${local.nfs_sg_name_prefix_raw}",
       "Description", "SG to assigned to ElasicCache instances/cluster so that instances from ${local.cluster_name} can access it",
     )
   )}"
@@ -276,7 +276,7 @@ resource aws_security_group cluster_elasticsearch_sg {
   tags = "${merge(
     var.tags,
     map(
-      "Name", "ecs_cluster-elasticsearch-${local.cluster_name}",
+      "Name", "${local.elasticsearch_sg_name_prefix_raw}",
       "Description", "SG to assigned to ElasicCache instances/cluster so that instances from ${local.cluster_name} can access it",
     )
   )}"
@@ -314,7 +314,7 @@ resource aws_security_group cluster_redshift_sg {
   tags = "${merge(
     var.tags,
     map(
-      "Name", "ecs_cluster-redshift-${local.cluster_name}",
+      "Name", "${local.redshift_sg_name_prefix_raw}",
       "Description", "SG to assigned to ElasicCache instances/cluster so that instances from ${local.cluster_name} can access it",
     )
   )}"
