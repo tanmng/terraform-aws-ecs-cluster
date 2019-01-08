@@ -19,8 +19,10 @@ data aws_ami ecs_optimized {
 }
 
 data aws_vpc private_vpc {
-  id = "${var.global_vpc_id}"
+  id = "${var.vpc_id}"
 }
+
+data aws_region current {}
 
 #--------------------------------------------------------------
 # Data used for our IAM roles and policies

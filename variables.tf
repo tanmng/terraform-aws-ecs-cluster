@@ -1,12 +1,7 @@
 #--------------------------------------------------------------
 # Global Variables
 #--------------------------------------------------------------
-variable global_region {
-  description = "The AWS region in which to deploy the ecs_cluster infrastructure."
-  type        = "string"
-}
-
-variable global_vpc_id {
+variable vpc_id {
   description = "The VPC ID in which to deploy the ecs_cluster infrastructure."
   type        = "string"
 }

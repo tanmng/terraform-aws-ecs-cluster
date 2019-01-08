@@ -5,7 +5,7 @@ data template_file init {
   template = "${file("${path.module}/templates/userdata.tpl")}"
 
   vars {
-    region      = "${var.global_region}"
+    region      = "${data.aws_region.current.name}"
     ecs_cluster = "${aws_ecs_cluster.ecs_cluster.name}"
 
     # Content of awslogs config file and ecs config - Base64 encoded to avoid any weird YAML issues - Yes yes, I know about "indent"
@@ -27,7 +27,7 @@ data template_file aws_cli_conf {
   template = "${file("${path.module}/templates/awscli.conf.tpl")}"
 
   vars {
-    region = "${var.global_region}"
+    region = "${data.aws_region.current.name}"
   }
 }
 

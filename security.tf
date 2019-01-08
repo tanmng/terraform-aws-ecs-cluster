@@ -4,7 +4,7 @@
 resource aws_security_group public_lb_sg {
   name_prefix = "ecs_cluster-public_lb-${local.cluster_name}"
   description = "Authorize connections from public load balancer to instances of the cluster ${local.cluster_name}"
-  vpc_id      = "${var.global_vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(
     var.tags,
@@ -31,7 +31,7 @@ resource aws_security_group_rule allow_egress_all_from_public_lb_to_asg {
 resource aws_security_group private_lb_sg {
   name_prefix = "ecs_cluster-private_lb-${local.cluster_name}"
   description = "Authorize connections from private load balancer to instances of the cluster ${local.cluster_name}"
-  vpc_id      = "${var.global_vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(
     var.tags,
@@ -68,7 +68,7 @@ resource aws_security_group_rule allow_egress_all_from_private_lb_to_asg {
 resource aws_security_group sg {
   name_prefix = "ecs_cluster-sg-${local.cluster_name}"
   description = "Authorize access to and from the EC2 instances running within our cluster ${local.cluster_name}"
-  vpc_id      = "${var.global_vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(
     var.tags,
@@ -149,17 +149,6 @@ resource aws_security_group_rule allow_egress_https_all {
   description       = "Allow instance to use HTTPS"
 }
 
-resource aws_security_group_rule allow_egress_custom_all {
-  count             = "${length(local.egress_tcp_ports)}"
-  type              = "egress"
-  from_port         = "${element(local.egress_tcp_ports, count.index)}"
-  to_port           = "${element(local.egress_tcp_ports, count.index)}"
-  protocol          = "tcp"
-  security_group_id = "${aws_security_group.sg.id}"
-  cidr_blocks       = ["0.0.0.0/0"]
-  description       = "Allow instance to use custom on port ${element(local.egress_tcp_ports, count.index)}"
-}
-
 resource aws_security_group_rule allow_egress_puppet_all {
   type              = "egress"
   from_port         = 8140
@@ -178,7 +167,7 @@ resource aws_security_group cluster_rds_sg {
   name_prefix = "ecs_cluster-rds-${local.cluster_name}"
   description = "SG to assigned to RDS instances/cluster so that instances from ${local.cluster_name} can access it"
   count       = "${var.create_sg_for_rds? 1 : 0}"
-  vpc_id      = "${var.global_vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(
     var.tags,
@@ -216,7 +205,7 @@ resource aws_security_group cluster_elasticache_sg {
   name_prefix = "ecs_cluster-elasticache-${local.cluster_name}"
   description = "SG to assigned to ElasicCache instances/cluster so that instances from ${local.cluster_name} can access it"
   count       = "${var.create_sg_for_elasticache? 1 : 0}"
-  vpc_id      = "${var.global_vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(
     var.tags,
@@ -254,7 +243,7 @@ resource aws_security_group cluster_nfs_sg {
   name_prefix = "ecs_cluster-nfs-${local.cluster_name}"
   description = "SG to assigned to ElasicCache instances/cluster so that instances from ${local.cluster_name} can access it"
   count       = "${var.create_sg_for_nfs? 1 : 0}"
-  vpc_id      = "${var.global_vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(
     var.tags,
@@ -292,7 +281,7 @@ resource aws_security_group cluster_elasticsearch_sg {
   name_prefix = "ecs_cluster-elasticsearch-${local.cluster_name}"
   description = "SG to assigned to ElasicCache instances/cluster so that instances from ${local.cluster_name} can access it"
   count       = "${var.create_sg_for_elasticsearch? 1 : 0}"
-  vpc_id      = "${var.global_vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(
     var.tags,
@@ -330,7 +319,7 @@ resource aws_security_group cluster_redshift_sg {
   name_prefix = "ecs_cluster-redshift-${local.cluster_name}"
   description = "SG to assigned to ElasicCache instances/cluster so that instances from ${local.cluster_name} can access it"
   count       = "${var.create_sg_for_redshift? 1 : 0}"
-  vpc_id      = "${var.global_vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   tags = "${merge(
     var.tags,

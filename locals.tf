@@ -30,13 +30,11 @@ locals {
     9300, # Native protocol
   ]
 
-  # List of ports on which we would like to allow our instance egress
-  egress_tcp_ports = [
-    25, # SMTP
-    21, # FTP
-  ]
-
   redshift_tcp_ports = [
     5439, # Redshift default port
   ]
+
+  # Name prefix for elements
+  asg_name_prefix_raw = "ecs_cluster-asg-${local.cluster_name}"
+  lc_name_prefix_raw = "ecs_cluster-lc-${local.cluster_name}"
 }
